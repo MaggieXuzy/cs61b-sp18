@@ -16,7 +16,9 @@ public class ArrayDeque<T> {
         int cur = nextFirst + 1;
 
         for (int cnt = 0; cnt < items.length; cnt++){
-            if (cur == items.length) cur = 0;
+            if (cur == items.length){
+                cur = 0;
+            }
             a[cnt] = items[cur];
             cur++;
         }
@@ -58,7 +60,9 @@ public class ArrayDeque<T> {
         int cur = nextFirst + 1;
 
         while (cur != nextLast){
-            if (cur == items.length) cur = 0;
+            if (cur == items.length){
+                cur = 0;
+            }
             System.out.print(items[cur]);
             System.out.print(" ");
             cur++;
@@ -70,7 +74,9 @@ public class ArrayDeque<T> {
         int cur = nextFirst + 1;
 
         for (int cnt = 0; cnt < size; cnt++){
-            if (cur == items.length) cur = 0;
+            if (cur == items.length){
+                cur = 0;
+            }
             a[cnt] = items[cur];
             cur++;
         }
@@ -86,17 +92,23 @@ public class ArrayDeque<T> {
         T res = items[nextFirst];
         items[nextFirst] = null;
         size--;
-        if ((double)size / items.length < 0.25 && items.length >= 16) removeResizing();
+        if ((double)size / items.length < 0.25 && items.length >= 16){
+            removeResizing();
+        }
         return res;
     }
 
     public T removeLast(){
-        if (nextLast == 0) nextLast = items.length - 1;
+        if (nextLast == 0){
+            nextLast = items.length - 1;
+        }
         else nextLast--;
         T res = items[nextLast];
         items[nextLast] = null;
         size--;
-        if ((double)size / items.length < 0.25 && items.length >= 16) removeResizing();
+        if ((double)size / items.length < 0.25 && items.length >= 16){
+            removeResizing();
+        }
         return res;
     }
 
