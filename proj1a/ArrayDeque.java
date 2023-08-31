@@ -114,23 +114,20 @@ public class ArrayDeque<T> {
         if (size <= 0) {
             size = 0;
             return null;
-        }
-        else{
+        } else {
             if (nextLast == 0) {
                 nextLast = items.length - 1;
-            }
-            else {
+            } else {
                 nextLast--;
             }
             T res = items[nextLast];
             items[nextLast] = null;
             size--;
-            if ((double)size / items.length < 0.25 && items.length >= 16) {
+            if ((double) size / items.length < 0.25 && items.length >= 16) {
                 removeResizing();
             }
             return res;
         }
-
     }
 
     public T get(int index) {
