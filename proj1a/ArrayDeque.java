@@ -29,11 +29,13 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item){
-        if (size == items.length) addResizing();
+        if (size == items.length){
+            addResizing();
+        }
         items[nextFirst] = item;
         nextFirst--;
         size++;
-        if (nextFirst == 0){
+        if (nextFirst == -1){
             nextFirst = items.length - 1;
         }
     }
