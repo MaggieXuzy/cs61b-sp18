@@ -89,44 +89,53 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst(){
-        if (nextFirst == items.length - 1) nextFirst = 0;
-        else nextFirst++;
-        T res = items[nextFirst];
-        items[nextFirst] = null;
-        size--;
-        if ((double)size / items.length < 0.25 && items.length >= 16){
-            removeResizing();
-        }
         if (size < 0) {
             size = 0;
+            return null;
         }
-        return res;
+        else{
+            if (nextFirst == items.length - 1) nextFirst = 0;
+            else nextFirst++;
+            T res = items[nextFirst];
+            items[nextFirst] = null;
+            size--;
+            if ((double)size / items.length < 0.25 && items.length >= 16){
+                removeResizing();
+            }
+            return res;
+        }
     }
 
-    public T removeLast(){
-        if (nextLast == 0){
-            nextLast = items.length - 1;
-        }
-        else nextLast--;
-        T res = items[nextLast];
-        items[nextLast] = null;
-        size--;
-        if ((double)size / items.length < 0.25 && items.length >= 16){
-            removeResizing();
-        }
+    public T removeLast() {
         if (size < 0) {
             size = 0;
+            return null;
         }
-        return res;
+        else{
+            if (nextLast == 0) {
+                nextLast = items.length - 1;
+            }
+            else {
+                nextLast--;
+            }
+            T res = items[nextLast];
+            items[nextLast] = null;
+            size--;
+            if ((double)size / items.length < 0.25 && items.length >= 16) {
+                removeResizing();
+            }
+            return res;
+        }
+
     }
 
-    public T get(int index){
+    public T get(int index) {
         int cur = nextFirst + 1;
-        if (cur == items.length){
+        if (cur == items.length) {
             cur = 0;
         }
         int cnt = 0;
-        while (cnt != index){
+        while (cnt != index) {
             cnt++;
             cur++;
             if (cur == items.length) {
