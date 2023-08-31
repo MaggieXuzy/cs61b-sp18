@@ -97,6 +97,9 @@ public class ArrayDeque<T> {
         if ((double)size / items.length < 0.25 && items.length >= 16){
             removeResizing();
         }
+        if (size < 0) {
+            size = 0;
+        }
         return res;
     }
 
@@ -111,16 +114,24 @@ public class ArrayDeque<T> {
         if ((double)size / items.length < 0.25 && items.length >= 16){
             removeResizing();
         }
+        if (size < 0) {
+            size = 0;
+        }
         return res;
     }
 
     public T get(int index){
         int cur = nextFirst + 1;
+        if (cur == items.length){
+            cur = 0;
+        }
         int cnt = 0;
         while (cnt != index){
-            if (cur == items.length) cur = 0;
             cnt++;
             cur++;
+            if (cur == items.length) {
+                cur = 0;
+            }
         }
         return items[cur];
 
