@@ -41,7 +41,7 @@ public class ArrayDeque<T> {
     }
 
     public void addLast(T item) {
-        if (size == items.length){
+        if (size == items.length) {
             addResizing();
         }
         items[nextLast] = item;
@@ -94,18 +94,16 @@ public class ArrayDeque<T> {
         if (size <= 0) {
             size = 0;
             return null;
-        }
-        else{
+        } else {
             if (nextFirst == items.length - 1) {
                 nextFirst = 0;
-            }
-            else {
+            } else {
                 nextFirst++;
             }
             T res = items[nextFirst];
             items[nextFirst] = null;
             size--;
-            if ((double)size / items.length < 0.25 && items.length >= 16) {
+            if ((double) size / items.length < 0.25 && items.length >= 16) {
                 removeResizing();
             }
             return res;
