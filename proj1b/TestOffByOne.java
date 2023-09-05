@@ -8,7 +8,6 @@ public class TestOffByOne {
     static CharacterComparator offByOne = new OffByOne();
 
     // Your tests go here.
-    //Uncomment this class once you've created your CharacterComparator interface and OffByOne class. **/
 
     @Test
     public void testEqualChars() {
@@ -21,10 +20,10 @@ public class TestOffByOne {
     @Test
     public void testIsPalindrome() {
         OffByOne obo = new OffByOne();
-        assertTrue(obo.isPalindrome("abcab"));
-        assertFalse(obo.isPalindrome("aaa"));
-        assertTrue(obo.isPalindrome("gdserch"));
-        assertFalse(obo.isPalindrome("akz"));
-        assertFalse(obo.isPalindrome("akfsdz"));
+        assertTrue(obo.isPalindrome("abcab", obo));
+        assertFalse(obo.isPalindrome("aaa", obo));
+        assertTrue(obo.isPalindrome("gdserch", obo));
+        assertFalse(obo.isPalindrome("akz", obo));
+        assertFalse(obo.isPalindrome("akfsdz", obo));
     }
 }

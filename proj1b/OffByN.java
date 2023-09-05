@@ -4,11 +4,10 @@ public class OffByN implements CharacterComparator {
         diff = N;
     }
     @Override
-    public boolean equalChars(char x, char y){
+    public boolean equalChars(char x, char y) {
         if(x - y == diff || y - x == diff) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }
