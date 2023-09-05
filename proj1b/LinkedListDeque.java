@@ -1,10 +1,10 @@
-public class LinkedListDeque<T> implements Deque<T>{
-    public class Node<T>{
+public class LinkedListDeque<T> implements Deque<T> {
+    public class Node<T> {
         private Node prev;
         private T item;
         private Node next;
 
-        public Node(Node prevIn, T itemIn, Node nextIn){
+        public Node(Node prevIn, T itemIn, Node nextIn) {
             prev = prevIn;
             item = itemIn;
             next = nextIn;
@@ -15,7 +15,7 @@ public class LinkedListDeque<T> implements Deque<T>{
     private Node sentinel;
 
 
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         size = 0;
         sentinel = new Node(null, null, null);
         sentinel.prev = sentinel;
@@ -24,33 +24,33 @@ public class LinkedListDeque<T> implements Deque<T>{
     }
 
     @Override
-    public void addFirst(T item){
+    public void addFirst(T item) {
         sentinel.next = new Node(sentinel, item, sentinel.next);
         sentinel.next.next.prev = sentinel.next;
-        size ++;
+        size++;
     }
 
     @Override
-    public void addLast(T item){
+    public void addLast(T item) {
         sentinel.prev = new Node(sentinel.prev, item, sentinel);
         sentinel.prev.prev.next = sentinel.prev;
-        size ++;
+        size++;
     }
 
     @Override
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
     @Override
-    public int size(){
+    public int size() {
         return size;
     }
 
     @Override
-    public void printDeque(){
+    public void printDeque() {
         Node cur = sentinel.next;
-        while (cur.item != null){
+        while (cur.item != null) {
             System.out.print(cur.item);
             System.out.print(" ");
             cur = cur.next;
@@ -58,45 +58,51 @@ public class LinkedListDeque<T> implements Deque<T>{
     }
 
     @Override
-    public T removeFirst(){
+    public T removeFirst() {
         Node returnNode = sentinel.next;
         sentinel.next = returnNode.next;
         sentinel.next.prev = returnNode.prev;
         size--;
+        if (size < 0) {
+            size = 0;
+        }
         return (T) returnNode.item;
     }
 
     @Override
-    public T removeLast(){
+    public T removeLast() {
         Node returnNode = sentinel.prev;
         sentinel.prev = returnNode.prev;
         returnNode.prev.next = returnNode.next;
         size--;
+        if (size < 0) {
+            size = 0;
+        }
         return (T) returnNode.item;
     }
 
     @Override
-    public T get(int index){
-        if (index > size){
-            return null;
-        }
+    public T get(int index) {
         Node cur = sentinel.next;
-        for (int i = 0; i <= index; i++) cur = cur.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
         return (T) cur.item;
-
     }
 
-    private T getRecursiveHelp(Node cur, int index){
-        if (index == 0) return (T) cur.item;
-        else{
+    private T getRecursiveHelp(Node cur, int index) {
+        if (index == 0) {
+            return (T) cur.item;
+        } else {
             return (T) getRecursiveHelp(cur.next, index - 1);
         }
     }
 
-    public T getRecursive(int index){
-        if (index > size){
+    public T getRecursive(int index) {
+        if (index > size) {
             return null;
+        } else {
+            return (T) getRecursiveHelp(sentinel.next, index);
         }
-        else return (T) getRecursiveHelp(sentinel.next, index);
     }
 }
