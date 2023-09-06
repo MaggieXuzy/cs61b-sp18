@@ -22,5 +22,18 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("a"));
         assertFalse(palindrome.isPalindrome("moon"));
         assertTrue(palindrome.isPalindrome(""));
+        assertFalse(palindrome.isPalindrome("za"));
+    }
+
+    @Test
+    public void testIsOffByOnePalindrome() {
+        CharacterComparator obo = new OffByOne();
+        assertTrue(palindrome.isPalindrome("aba", obo));
+        assertFalse(palindrome.isPalindrome("aaa", obo));
+        assertFalse(palindrome.isPalindrome("Acb", obo));
+        assertFalse(palindrome.isPalindrome("akz", obo));
+        assertFalse(palindrome.isPalindrome("akfsdz", obo));
+        assertTrue(palindrome.isPalindrome("a", obo));
+        assertTrue(palindrome.isPalindrome("", obo));
     }
 }
