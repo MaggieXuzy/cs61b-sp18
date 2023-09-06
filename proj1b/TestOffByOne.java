@@ -19,11 +19,12 @@ public class TestOffByOne {
 
     @Test
     public void testIsPalindrome() {
+        Palindrome palindrome = new Palindrome();
         OffByOne obo = new OffByOne();
-        assertTrue(obo.isPalindrome("abcab", obo));
-        assertFalse(obo.isPalindrome("aaa", obo));
-        assertTrue(obo.isPalindrome("gdserch", obo));
-        assertFalse(obo.isPalindrome("akz", obo));
-        assertFalse(obo.isPalindrome("akfsdz", obo));
+        assertTrue(palindrome.isPalindrome("abcab", obo));
+        assertFalse(palindrome.isPalindrome("aaa", obo));
+        assertTrue(palindrome.isPalindrome("gdserch", obo));
+        assertFalse(palindrome.isPalindrome("akz", obo));
+        assertFalse(palindrome.isPalindrome("akfsdz", obo));
     }
 }
